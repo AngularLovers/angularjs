@@ -8,8 +8,6 @@ ng-book
 
 
 
-
-
 ###angularjs 1.x学习记录
 #####1.不要复用controller
 #####2.模块化:一切都是从模块开始的。
