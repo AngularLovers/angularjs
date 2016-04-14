@@ -1,3 +1,4 @@
 ng-book
 =======
-#####这是ng-book上配套的代码，如果想要ng-book电子书的找我要，千万不要客气,除了这个其他的我也帮不上什么忙
+想要ng-book配置源码请check 本分支(master)。[传送门](https://github.com/qq83387856/ng-book-code/tree/master)
+####### ng-book 英文原版（1.5.x）和中文版(1.2.x)本传送门 [https://github.com/qq83387856/ng-book-code/tree/master/pdf](https://github.com/qq83387856/ng-book-code/tree/master/pdf)
