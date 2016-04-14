@@ -1,0 +1,90 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>CSS Keyframe Animation</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+  <script src="http://code.angularjs.org/1.2.0-rc.2/angular-animate.js"></script>
+  <style>
+    @keyframes animateSwitch-enter {
+      from {opacity:0;}
+      to {opacity:1; color: green}
+    }
+    @-webkit-keyframes animateSwitch-enter {
+      from {opacity:0;}
+      to {opacity:1; color: green}
+    }
+    @keyframes animateSwitch-leave {
+      from {opacity: 1;}
+      to {opacity: 0; color: black}
+    }
+    @-webkit-keyframes animateSwitch-leave {
+      from {opacity: 1;}
+      to {opacity: 0; color: black}
+    }
+    .animateSwitch.ng-enter {
+      -webkit-animation: 2s animateSwitch-enter;
+      -moz-animation: 2s animateSwitch-enter;
+      -o-animation: 2s animateSwitch-enter;
+      animation: 2s animateSwitch-enter;
+    }
+    .animateSwitch.ng-leave {
+      -webkit-animation: 2s animateSwitch-leave;
+      -moz-animation: 2s animateSwitch-leave;
+      -o-animation: 2s animateSwitch-leave;
+      animation: 2s animateSwitch-leave;
+    }
+    .animateSwitch.ng-enter {
+      opacity: 0;
+      color: green;
+    }
+    .animateSwitch.ng-enter.ng-enter-active {
+      opacity: 1;
+      color: black;
+    }
+    .animateSwitch.ng-leave {}
+    .animateSwitch.ng-leave.ng-leave-active {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div ng-init="template='home'"
+      ng-controller="HomeController">
+    <button ng-click="template='home'">Home</button>
+    <button ng-click="template='second'">Second</button>
+    <button ng-click="template='third'">Third</button>
+    <div ng-switch="template">
+      <div class="animateSwitch"
+        ng-switch-when="home">
+        <h1>Home</h1>
+      </div>
+      <div class="animateSwitch"
+        ng-switch-when="second">
+        <h1>Second</h1>
+      </div>
+      <div class="animateSwitch"
+            ng-switch-when="third">
+        <h1>Home</h1>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/ng-template" id="/home.html">
+    Home Template
+  </script>
+  <script type="text/ng-template" id="/second.html">
+    Second Template
+  </script>
+  <script type="text/ng-template" id="/third.html">
+    Third Template
+  </script>
+
+  <script>
+    angular.module('myApp', ['ngAnimate'])
+    .controller('HomeController', function() {
+    });
+  </script>
+
+</body>
+</html>

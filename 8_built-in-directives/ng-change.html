@@ -1,0 +1,27 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <link rel="stylesheet" href="http://cdn.jsdelivr.net/foundation/4.3.2/css/foundation.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+  <!-- type any number into the text field -->
+
+  <div ng-controller="EquationController">
+    <input type="text" ng-model="equation.x" ng-change="change()" />
+    <code>{{ equation.output }}</code>
+  </div>
+
+  <script>
+    angular.module('myApp', [])
+    .controller('EquationController', function($scope) {
+      $scope.equation = {};
+      $scope.change = function() {
+        $scope.equation.output = Number($scope.equation.x) + 2;
+      };
+    });
+  </script>
+
+</body>
+</html>

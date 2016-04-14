@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+  <title>Security Example1</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+  <div ng-app="myApp">
+    <div ng-controller="MyController">
+      <h4>Write some HTML</h4>
+      <textarea ng-model="email.rawHtml"></textarea>
+      <pre ng-bind-html="email.htmlBody"></pre>
+
+      <div trusted-content ng-model="email.rawHtml"></div>
+
+      <h4>Write some Javascript</h4>
+      <textarea ng-model="email.rawJs"></textarea>
+      <pre ng-bind="email.jsBody"></pre>
+      <button ng-click="runJs()">Run</button>
+    </div>
+  </div>
+
+  <script>
+    angular.module("myApp", [])
+    .directive('trustedContent', ['$sce', 
+        function($sce) {
+          return {
+            scope: {
+              ngModel: '='
+            },
+            template: '<h2>Trusted <span ng-bind-html="{{ parsed }}"></span></h2>',
+            link: function(scope, ele, attrs, ctrl) {
+              scope.$watch('ngModel', function(v) {
+                scope.parsed = $sce.trustAsHtml(v);
+              });
+            }
+          }
+    }])
+    .controller("MyController", ['$scope', '$sce',
+        function($scope, $sce) {
+
+          $scope.$watch('email.rawHtml', function(v) {
+            if (v) {
+              $scope.email.htmlBody =
+                $sce.trustAsHtml($scope.email.rawHtml);
+            }
+          });
+          $scope.$watch('email.rawJs', function(v) {
+            if (v) {
+              $scope.email.jsBody =
+                $sce.trustAsJs($scope.email.rawJs);
+            }
+          });
+          $scope.trustedContent = 
+            $scope.getTrusted
+          $scope.runJs = function() {
+            eval($scope.email.jsBody.toString());
+          }
+    }]);
+  </script>
+</body>
+</html>

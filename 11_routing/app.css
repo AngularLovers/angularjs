@@ -1,0 +1,26 @@
+body {
+  background-color: #fff;
+  border-top: 5px solid #3399cc;
+}
+
+html {
+  background: #fff;
+}
+
+.row {
+  border: 0px solid green;
+}
+
+header {
+  background: #f2f2f2;
+  min-height: 100px;
+  border-bottom: 8px solid #3366cc;
+  padding: 25px 0;
+  font-size: 100%;
+  font-family: 'Open Sans', 'PT Sans', sans-serif;
+
+}
+header h1 {
+  font-size: 125%;
+  font-family: 'Open Sans', 'PT Sans', sans-serif;
+}

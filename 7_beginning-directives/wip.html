@@ -1,0 +1,30 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+</head>
+<body>
+
+
+  <div ng-controller="ParentController
+">
+    <input type="text" ng-model="name" />
+    <input type="text" ng-model="myLinkText" />
+
+  <div ng-controller="ChildController">
+    <div my-directive
+         some-attr="myUrl"
+         my-link-text="myLinkText"
+         some-hello="name"
+         another-hello=""
+         >
+    </div>
+  </div>
+</div>
+
+
+<script src="js/angular.js"></script>
+<script src="js/wip.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+  <style type="text/css">
+    .sidebox {
+      background: #fff;
+      border: 1px solid #e2e2e2;
+      margin: 0.5em;
+      padding: 0.7em;
+      color: #222;
+      border-radius: 4px;
+      box-shadow: 2px 2px 4px #ddd;
+    }
+    .sidebox .header {
+      border-bottom: 1px solid #333;
+    }
+    .sidebox .tagcloud a {
+      text-decoration: none;
+      color: #99b111;
+    }
+  </style>
+</head>
+<body>
+
+  <div sidebox title="Links">
+    <ul>
+      <li>First link</li>
+      <li>Second link</li>
+    </ul>
+  </div>
+
+  <div sidebox title="TagCloud">
+    <div class="tagcloud">
+      <a href="">Graphics</a>
+      <a href="">AngularJS</a>
+      <a href="">D3</a>
+      <a href="">Front-end</a>
+      <a href="">Startup</a>
+    </div>
+  </div>
+
+  <script>
+    angular.module('myApp', [])
+    .directive('sidebox', function() {
+      return {
+        restrict: 'EA',
+        scope: {
+          title: '@'
+        },
+        transclude: true,
+        template: '<div class="sidebox">\
+          <div class="content">\
+            <h2 class="header">{{ title }}</h2>\
+            <span class="content" ng-transclude>\
+            </span>\
+          </div>\
+        </div>'
+      }
+    })
+  </script>
+
+</body>
+</html>

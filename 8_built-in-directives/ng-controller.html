@@ -1,0 +1,29 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+  <div ng-controller="SomeController">
+    {{ someModel.someProperty }}
+    <button ng-click="someAction()">Communicate</button>
+  </div>
+
+  <script>
+    angular.module('myApp', [])
+    .controller('SomeController', function($scope) {
+      // create a model
+      $scope.someModel = {
+        // with a property
+        someProperty: 'hello computer'
+      }
+      // set methods on the $scope itself
+      $scope.someAction = function() {
+        $scope.someModel.someProperty = 'hello human';
+      };
+    });
+  </script>
+
+</body>
+</html>

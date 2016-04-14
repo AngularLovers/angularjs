@@ -1,0 +1,23 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/foundation/4.3.2/css/foundation.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+  {{ someProperty }}
+  <button ng-click="someAction()">Communicate</button>
+
+  <script>
+    angular.module('myApp', [])
+    .run(function($rootScope) {
+      $rootScope.someProperty = 'hello computer';
+      $rootScope.someAction = function() {
+        $rootScope.someProperty = 'hello human';
+      };
+    });
+  </script>
+
+</body>
+</html>

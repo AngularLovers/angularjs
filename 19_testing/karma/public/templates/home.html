@@ -1,0 +1,17 @@
+<div notification message="message"></div>
+
+<input ng-model="search.$" type="text" placeholder="Search filter" />
+<table id="emailTable">
+  <thead>
+    <tr>
+      <td>Order</td><td>From</td><td>Subject</td><td>&nbsp;</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="email in emails | filter:search.$">
+      <td>{{ $index + 1 }}</td>
+      <td>{{ email.from }}</td>
+      <td>{{ email.subject | capitalize }}</td>
+    </tr>
+  </tbody>
+</table>

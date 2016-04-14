@@ -1,0 +1,60 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>CSS Keyframe Animation</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+  <script src="http://code.angularjs.org/1.2.0-rc.2/angular-animate.js"></script>
+  <script src="http://code.angularjs.org/1.2.0-rc.2/angular-route.js"></script>
+  <style>
+    @keyframes animateView-enter {
+      from {opacity: 0; color: green}
+      to {opacity: 1; color: black;}
+    }
+    @-webkit-keyframes animateView-enter {
+      from {opacity: 0; color: green}
+      to {opacity: 1; color: black;}
+    }
+    @keyframes animateView-leave {
+      from {opacity: 1; color: black;}
+      to {opacity: 0;}
+    }
+    @-webkit-keyframes animateView-leave {
+      from {opacity: 1; color: black;}
+      to {opacity: 0;}
+    }
+    .animateView.ng-enter {
+      -webkit-animation: 2s animateView-enter;
+      -moz-animation: 2s animateView-enter;
+      -o-animation: 2s animateView-enter;
+      animation: 2s animateView-enter;
+    }
+    .animateView.ng-leave {
+      -webkit-animation: 2s animateView-leave;
+      -moz-animation: 2s animateView-leave;
+      -o-animation: 2s animateView-leave;
+      animation: 2s animateView-leave;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#/">Home</a>
+  <a href="#/two">Second view</a>
+  <a href="#/three">Third view</a>
+  <div class="animateView" ng-view></div>
+
+  <script>
+    angular.module('myApp', ['ngAnimate', 'ngRoute'])
+    .config(function($routeProvider) {
+      $routeProvider.when('/', {
+        template: '<h2>One</h2>'
+      }).when('/two', {
+        template: '<h2>Two</h2>'
+      }).when('/three', {
+        template: '<h2>Three</h2>'
+      });
+    })
+  </script>
+
+</body>
+</html>

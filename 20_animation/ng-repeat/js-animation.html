@@ -1,0 +1,87 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>JS Animation</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+  <script src="http://code.angularjs.org/1.2.0-rc.2/angular-animate.js"></script>
+  <style>
+    .fadein.ng-enter {
+      opacity: 0;
+      color: green;
+    }
+    .fadein.ng-enter.ng-enter-active {
+      opacity: 1;
+      color: black;
+    }
+    .fadein.ng-leave {}
+    .fadein.ng-leave.ng-leave-active {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div ng-controller="HomeController">
+    <ul>
+      <li class="fadein" ng-repeat="r in roommates">
+        {{ r }}
+      </li>
+  </div>
+
+  <script>
+    angular.module('myApp', ['ngAnimate'])
+      .controller('HomeController', function($scope) {
+        $scope.roommates = [
+          'Ari', 'Q', 'Sean', 'Anand'
+        ];
+        setTimeout(function() {
+          $scope.roommates.push('Ginger');
+          $scope.$apply(); // Trigger a digest
+
+          setTimeout(function() {
+            $scope.roommates.shift();
+            $scope.$apply(); // Trigger digest
+          }, 2000);
+        }, 1000);
+      })
+
+      .animation('.fadein', function() {
+        return {
+          enter: function(element, done) {
+            // Raw animation without jQuery
+            // This is much simpler with jQuery
+            var op = 0, timeout,
+              animateFn = function() {
+                op += 10;
+                element.css('opacity', op/100);
+                if (op >= 100) {
+                  clearInterval(timeout);
+                  done();
+                }
+              };
+
+            // Set initial opacity to 0
+            element.css('opacity', 0);
+            timeout = setInterval(animateFn, 100);
+          },
+          leave: function(element, done) {
+            var op = 100,
+                timeout,
+                animateFn = function() {
+                  op-=10;
+                  element.css('opacity', op/100);
+                  if (op <= 0) {
+                    clearInterval(timeout);
+                    done();
+                  }
+                };
+            element.css('opacity', 100);
+            timeout = setInterval(animateFn, 100);
+          }
+        }
+      });
+
+  </script>
+
+</body>
+</html>

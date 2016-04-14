@@ -1,0 +1,22 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>Dependency Injection Example</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+
+  <script>
+    // TODO: this does not currently work as described
+    // Try this out in your console:
+    // var injector = angular.injector(['myApp']);
+    // injector.annotate('MyController');
+    var app = angular.module('myApp', ['myApp.controllers']);
+
+    angular.module('myApp.controllers', [])
+    .controller('MyController', ['$scope', function($scope) {}]);
+  </script>
+
+</body>
+</html>

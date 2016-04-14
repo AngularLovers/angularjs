@@ -1,0 +1,12 @@
+{
+  "name": "localization",
+  "version": "0.0.0",
+  "description": "Localization example",
+  "main": "init.js",
+  "dependencies": {
+    "grunt": "~0.4.1",
+    "grunt-angular-gettext": "~0.1.3"
+  },
+  "devDependencies": {},
+  "author": "Ari Lerner"
+}

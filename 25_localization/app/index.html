@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <title>Localize me</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-gettext/dist/angular-gettext.min.js"></script>
+  </head>
+  <body>
+    <div ng-controller="HomeController">
+      <h1 translate>Hello {{ user.name }}</h1>
+      <h2 translate translate-n="count"
+          translate-plural="{{ count }} books">
+          {{ count }} book
+      </h2>
+
+      <button ng-click="changeLanguage()">Change to Spanish</button>
+    </div>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/translations.js"></script>
+  </body>
+</html>

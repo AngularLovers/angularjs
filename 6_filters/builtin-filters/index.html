@@ -1,0 +1,99 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>Built In Filters</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+  <div ng-controller="DemoController">
+    <div>{{ name | uppercase }}</div>
+    <div ng-bind="lowercaseName"></div>
+    <div>{{ 123.456789 | number:2 }}</div>
+    <div>{{ 123 | currency }}</div>
+
+    <h4>Date Helpers:</h4>
+    <div>{{ today | date:'medium' }}</div>
+    <div>{{ today | date:'short' }}</div>
+    <div>{{ today | date:'fullDate' }}</div>
+    <div>{{ today | date:'longDate' }}</div>
+    <div>{{ today | date:'mediumDate' }}</div>
+    <div>{{ today | date:'shortDate' }}</div>
+    <div>{{ today | date:'mediumTime' }}</div>
+    <div>{{ today | date:'shortTime' }}</div>
+    <div>Month in year: {{ today | date:'MMMM' }}</div>
+    <div>Short month in year: {{ today | date:'MMM' }}</div>
+    <div>Padded month in year: {{ today | date:'MM' }}</div>
+    <div>Month in year: {{ today | date:'M' }}</div>
+    <div>Padded day in month: {{ today | date:'dd' }} <!-- 09 --></div>
+    <div>Day in month: {{ today | date:'d' }} <!-- 9 --></div>
+    <div>Day in week: {{ today | date:'EEEE' }} <!-- Thursday --></div>
+    <div>Short day in week: {{ today | date:'EEE' }} <!-- Thu --></div>
+    <div>Padded hour in day: {{ today | date:'HH' }} <!-- 00 --></div>
+    <div>Hour in day: {{ today | date:'H' }} <!-- 0 --></div>
+    <div>Padded hour in am/pm: {{ today | date:'hh' }} <!-- 12 --></div>
+    <div>Hour in am/pm: {{ today | date:'h' }} <!-- 12 --></div>
+    <div>Padded minute in hour: {{ today | date:'mm' }} <!-- 09 --></div>
+    <div>Minute in hour: {{ today | date:'m' }} <!-- 9 --></div>
+    <div>Padded second in minute: {{ today | date:'ss' }} <!-- 02 --></div>
+    <div>Second in minute: {{ today | date:'s' }} <!-- 2 --></div>
+    <div>Padded millisecond in second: {{ today | date:'.sss' }} <!-- .995 --></div>
+    <div>am/pm character: {{ today | date:'a' }} <!-- AM --></div>
+    <div>4 digit representation of timezone offset: {{ today | date:'Z' }} <!-- -0700 --></div>
+    <div>{{ today | date:'MMM d, y' }} <!-- Aug 09, 2013 --></div>
+    <div>{{ today | date:'EEEE, d, M' }} <!-- Thursday, 9, 8 --></div>
+    <div>{{ today | date:'hh:mm:ss.sss' }} <!-- 12:09:02.995 --></div>
+    <div>{{ ['Ari', 'Lerner', 'Likes', 'To', 'Eat', 'Pizza'] | filter:'e' }}</div>
+    <div>
+      {{ [{
+          'name': 'Ari',
+          'City': 'San Francisco',
+          'favorite food': 'Pizza'
+          }, {
+          'name': 'Nate',
+          'City': 'San Francisco',
+          'favorite food': 'indian food'
+          }] | filter:{'favorite food': 'Pizza'} }}
+    </div>
+    <div>{{ ['Ari', 'likes', 'to', 'travel'] | filter:isCapitalized }}</div>
+  </div>
+
+  <div>
+    <h5>Output JSON:</h5>
+    <div>{{ {'name': 'Ari', 'City': 'San Francisco'} | json }}</div>
+  </div>
+
+  <div>
+    <h5>limitTo:</h5>
+    <div>{{ ['a', 'b', 'c', 'd', 'e', 'f'] | limitTo:1 }}</div>
+  </div>
+
+  <div>
+    <h5>orderBy:</h5>
+    <div>
+      {{ [{
+          'name': 'Ari',
+          'status': 'awake'
+          }, {
+          'name': 'Q',
+          'status': 'sleeping'
+          }, {
+          'name': 'Nate',
+          'status': 'awake'
+          }] | orderBy: '+name' }}
+    </div>
+  </div>
+
+  <script>
+    angular.module('myApp', [])
+    .controller('DemoController', function($scope, $filter) {
+      $scope.name = "Ari Lerner";
+      $scope.lowercaseName = $filter('lowercase')('Ari');
+      $scope.today = new Date();
+      $scope.isCapitalized =
+        function(str) { return str[0] == str[0].toUpperCase(); }
+    })
+  </script>
+
+</body>
+</html>

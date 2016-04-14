@@ -1,0 +1,39 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <script src="http://code.angularjs.org/1.2.6/angular.js"></script>
+  <script src="http://code.angularjs.org/1.2.0-rc.3/angular-touch.js"></script>
+</head>
+<body>
+
+  <ul>
+    <li ng-repeat="mail in emails">
+      <div
+        ng-show="!mail.showActions"
+        ng-swipe-left="mail.showActions=true">
+        <div class="from">
+          From: <span>{{ mail.from }}</span>
+        </div>
+        <div class="body">
+          {{ mail.body }}
+        </div>
+      </div>
+      <div
+        ng-show="mail.showActions"
+        ng-swipe-right="mail.showActions=false">
+        <ul class="actions">
+          <li><button>Archive</button></li>
+          <li><button>Trash</button></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+
+  <script>
+    angular.module('myApp', ['ngTouch'])
+
+
+  </script>
+
+</body>
+</html>

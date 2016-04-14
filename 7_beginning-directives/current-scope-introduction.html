@@ -1,0 +1,55 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+  <style>
+    #parentController {
+      background-color: yellow;
+      padding: 10px;
+    }
+    #childController {
+      background-color: green;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <p>We can access: {{ rootProperty }}</p>
+  <div id="parentController" ng-controller="ParentController">
+    <p>We can access: {{ rootProperty }} and {{ parentProperty }}</p>
+    <div id="childController" ng-controller="ChildController">
+      <p>
+        We can access:
+        {{ rootProperty }} and
+        {{ parentProperty }} and
+        {{ childProperty }}
+      </p>
+      <p>{{ fullSentenceFromChild }}</p>
+    </div>
+  </div>
+
+  <script>
+    angular.module('myApp', [])
+    .run(function($rootScope) {
+      // use .run to access $rootScope
+      $rootScope.rootProperty = 'root scope';
+    })
+    .controller('ParentController', function($scope) {
+      // use .controller to access properties inside `ng-controller`
+      // in the DOM omit $scope, it is inferred based on the current controller
+      $scope.parentProperty = 'parent scope';
+    })
+    .controller('ChildController', function($scope) {
+      $scope.childProperty = 'child scope';
+      // just like in the DOM, we can access any of the properties in the
+      // prototype chain directly from the current $scope
+      $scope.fullSentenceFromChild = 'Same $scope: We can access: ' +
+                                     $scope.rootProperty + ' and ' +
+                                     $scope.parentProperty + ' and ' +
+                                     $scope.childProperty
+    });
+  </script>
+
+</body>
+</html>

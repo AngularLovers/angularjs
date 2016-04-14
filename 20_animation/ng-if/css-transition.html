@@ -1,0 +1,46 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>CSS Transition</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+  <script src="http://code.angularjs.org/1.2.0-rc.2/angular-animate.js"></script>
+  <style>
+    .animateNgIf.ng-enter,
+    .animateNgIf.ng-leave {
+      transition: 2s linear all;
+      -webkit-transition: 2s linear all;
+      -moz-transition: 2s linear all;
+      -o-transition: 2s linear all;
+    }
+    .animateNgIf.ng-enter {
+      opacity: 0;
+      color: green;
+    }
+    .animateNgIf.ng-enter.ng-enter-active {
+      opacity: 1;
+      color: black;
+    }
+    .animateNgIf.ng-leave {}
+    .animateNgIf.ng-leave.ng-leave-active {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div ng-init="show=false"
+      ng-controller="HomeController">
+    <button ng-click="show=!show">Show</button>
+    <div ng-if="show" class="animateNgIf">
+      <h2>Show me</h2>
+    </div>
+  </div>
+
+  <script>
+    angular.module('myApp', ['ngAnimate'])
+    .controller('HomeController', function() {
+    });
+  </script>
+
+</body>
+</html>

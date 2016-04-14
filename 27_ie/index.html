@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <title>Scopes Example</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+  <!--[if lte IE 8]>
+  <script type="text/javascript">
+    window.myCustomTags = [ 'helloDirective' ];
+  </script>
+  <script type="text/javascript" src="js/ie-shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div data-ng-app="myApp">
+    <div data-ng-controller="MyController">
+      <div data-hello></div>
+    </div>
+  </div>
+
+  <script>
+    angular.module("myApp", [])
+    .controller("MyController", ['$scope', function($scope) {
+    }])
+    .directive('hello', function() {
+      return {
+        template: "<h2>Hello</h2>"
+      }
+    });
+  </script>
+</body>
+</html>

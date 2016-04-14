@@ -1,0 +1,104 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>Services Example</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+  <div ng-controller="ServiceController">
+    <label for="username">Type in a GitHub username</label>
+    <input type="text"
+          ng-model="username"
+          placeholder="Enter a GitHub username" />
+    <ul>
+      <li ng-repeat="event in events">
+        <!--
+          event.actor and event.repo are returned
+          by the github API. To view the raw
+          API, uncomment the next line:
+        -->
+        <!-- {{ event | json }} -->
+        {{ event.actor.login }} {{ event.repo.name }}
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    angular.module('myApp', ['myApp.services'])
+    .controller('ServiceController', ['$scope', '$timeout', 'githubService',
+      function($scope, $timeout, githubService) {
+        $scope.events = null;
+        $scope.setUsername = null;
+
+        var timeout;
+        $scope.$watch('username', function(newUsername) {
+          if (newUsername) {
+            if (timeout) $timeout.cancel(timeout);
+            timeout = $timeout(function() {
+              $scope.setUsername = githubService.setUsername(newUsername);
+              githubService.events()
+                .success(function(data, status, headers) {
+                  $scope.events = data.data;
+                });
+            }, 350);
+          }
+        });
+    }]);
+
+    angular.module('myApp.services', [])
+    .factory('githubService', ['$http', function($http) {
+      var githubUrl = 'https://api.github.com',
+          githubUsername;
+
+      var runUserRequest = function(path) {
+        // Return the promise from the $http service
+        // that calls the Github API using JSONP
+        return $http({
+          method: 'JSONP',
+          url: githubUrl + '/users/' +
+                githubUsername + '/' +
+                path + '?callback=JSON_CALLBACK'
+        });
+      };
+
+      return {
+        events: function() {
+          return runUserRequest('events');
+        },
+        setUsername: function(username) {
+          githubUsername = username;
+        }
+      };
+    }]);
+
+    var githubDecorator = function($delegate) {
+      var events = function(path) {
+        var startedAt = new Date();
+        var result = $delegate.events(path);
+
+        // Events is a promise
+        result.then(function() {
+          console.log("Fetching events" +
+              " took " +
+              (new Date() - startedAt) + "ms");
+        });
+        return result;
+      }
+
+      return {
+        setUsername: function(username) {
+          return $delegate.setUsername(username);
+        },
+        events: events
+      };
+    };
+
+    angular.module('myApp')
+    .config(function($provide) {
+      $provide.decorator('githubService', githubDecorator);
+    })
+  </script>
+
+</body>
+</html>

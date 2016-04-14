@@ -1,0 +1,20 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <link rel="stylesheet" href="http://cdn.jsdelivr.net/foundation/4.3.2/css/foundation.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+  <div ng-show="2 + 2 == 5">2 + 2 isn't 5, don't show</div>
+  <div ng-show="2 + 2 == 4">2 + 2 is 4, do show</div>
+
+  <div ng-hide="2 + 2 == 5">2 + 2 isn't 5, don't hide</div>
+  <div ng-hide="2 + 2 == 4">2 + 2 isn't 5, do hide</div>
+
+  <script>
+    angular.module('myApp', []);
+  </script>
+
+</body>
+</html>

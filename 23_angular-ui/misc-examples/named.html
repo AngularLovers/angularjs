@@ -1,0 +1,49 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>Angular UI Abstract Templates with Named Views</title>
+</head>
+<body>
+
+  <div>
+    <div ui-view="filters"></div>
+    <div ui-view="mailbox"></div>
+    <div ui-view="priority"></div>
+  </div>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+  <script>
+    // visit named.html#/inbox for demo
+    angular.module('myApp', ['ui.router'])
+    .config(function($stateProvider, $urlRouterProvider) {
+      $stateProvider
+        .state('inbox', {
+          url: '/inbox',
+          views: {
+            'filters': {
+              template: '<h4>Filter inbox</h4>',
+              controller: function($scope) {}
+            },
+            'mailbox': {
+              template: '<h4>Normal inbox</h4>'
+            },
+            'priority': {
+              template: '<h4>Priority inbox which is reserved for {{ facebook }}</h4>',
+              resolve: {
+                facebook: function() {
+                  return "Data from facebook";
+                },
+              },
+              controller: function($scope, facebook) {
+                $scope.facebook = facebook;
+              }
+            }
+          }
+        });
+    })
+  </script>
+
+</body>
+</html>

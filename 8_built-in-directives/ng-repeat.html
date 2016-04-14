@@ -1,0 +1,34 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <link rel="stylesheet" href="http://cdn.jsdelivr.net/foundation/4.3.2/css/foundation.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+  <style>
+    .odd {
+      background-color: blue;
+    }
+    .even {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <ul ng-controller="PeopleController">
+    <li ng-repeat="person in people" ng-class="{even: !$even, odd: !$odd}">
+      {{person.name}} lives in {{person.city}}
+    </li>
+  </ul>
+
+  <script>
+    angular.module('myApp', [])
+    .controller('PeopleController', function($scope) {
+      $scope.people = [
+        {name: "Ari", city: "San Francisco"},
+        {name: "Erik", city: "Seattle"}
+      ];
+    });
+  </script>
+
+</body>
+</html>

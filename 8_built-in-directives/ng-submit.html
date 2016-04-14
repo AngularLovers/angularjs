@@ -1,0 +1,39 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <link rel="stylesheet" href="http://cdn.jsdelivr.net/foundation/4.3.2/css/foundation.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+  <form ng-submit="submit()" ng-controller="FormController">
+    Enter text and hit enter:
+    <input type="text" ng-model="person.name" name="person.name" />
+    <input type="submit" name="person.name" value="Submit" />
+    <code>people={{people}}</code>
+    <ul ng-repeat="(index, object) in people">
+      <li>{{ object.name }}</li>
+    </ul>
+  </form>
+
+  <script>
+    angular.module('myApp', [])
+    .controller('FormController', function($scope) {
+
+      $scope.person = {
+        name: null
+      };
+
+      $scope.people = [];
+
+      $scope.submit = function() {
+        if ($scope.person.name) {
+          $scope.people.push({name: $scope.person.name});
+          $scope.person.name = '';
+        }
+      };
+    });
+  </script>
+
+</body>
+</html>

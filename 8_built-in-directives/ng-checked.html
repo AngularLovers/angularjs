@@ -1,0 +1,27 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+  <label>someProperty = {{someProperty}}</label>
+  <input type="checkbox"
+         ng-checked="someProperty"
+         ng-init="someProperty = true"
+         ng-model="someProperty">
+
+  <br>
+
+  <label>anotherProperty = {{anotherProperty}}</label>
+  <input type="checkbox"
+         ng-checked="anotherProperty"
+         ng-init="anotherProperty = false"
+         ng-model="anotherProperty">
+
+  <script>
+    angular.module('myApp', [])
+  </script>
+
+</body>
+</html>

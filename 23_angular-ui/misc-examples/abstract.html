@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>Angular UI Abstract Templates with Named Views</title>
+</head>
+<body>
+
+  <div ui-view></div>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+  <script>
+    // visit abstract.html#/admin/index & abstract.html#/admin/users for demo
+    angular.module('myApp', ['ui.router'])
+    .config(function($stateProvider, $urlRouterProvider) {
+      $stateProvider
+        .state('admin', {
+          abstract: true,
+          url: '/admin',
+          template: '<div ui-view></div>'
+        })
+        .state('admin.index', {
+          url: '/index',
+          template: '<h3>Admin index</h3>'
+        })
+        .state('admin.users', {
+          url: '/users',
+          template: '<ul>Other stuff</ul>'
+        });
+    })
+  </script>
+
+</body>
+</html>

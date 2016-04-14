@@ -1,0 +1,51 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>CSS Transition</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+  <script src="http://code.angularjs.org/1.2.0-rc.2/angular-animate.js"></script>
+  <script src="http://code.angularjs.org/1.2.0-rc.2/angular-route.js"></script>
+  <style>
+    .animateView.ng-enter,
+    .animateView.ng-leave {
+      transition: 2s linear all;
+      -webkit-transition: 2s linear all;
+      -moz-transition: 2s linear all;
+      -o-transition: 2s linear all;
+    }
+    .animateView.ng-enter {
+      opacity: 0;
+      color: green;
+    }
+    .animateView.ng-enter.ng-enter-active {
+      opacity: 1;
+      color: black;
+    }
+    .animateView.ng-leave {}
+    .animateView.ng-leave.ng-leave-active {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#/">Home</a>
+  <a href="#/two">Second view</a>
+  <a href="#/three">Third view</a>
+  <div class="animateView" ng-view></div>
+
+  <script>
+    angular.module('myApp', ['ngAnimate', 'ngRoute'])
+    .config(function($routeProvider) {
+      $routeProvider.when('/', {
+        template: '<h2>One</h2>'
+      }).when('/two', {
+        template: '<h2>Two</h2>'
+      }).when('/three', {
+        template: '<h2>Three</h2>'
+      });
+    })
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <link rel="stylesheet" href="http://cdn.jsdelivr.net/foundation/4.3.2/css/foundation.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+  <div ng-controller="CounterController">
+    <button ng-click="count = count + 1" ng-init="count=0">
+      Increment
+    </button>
+    count: {{count}}
+
+    <button ng-click="decrement()">
+      Decrement
+    </button>
+  <div>
+
+  <script>
+    angular.module('myApp', [])
+    .controller('CounterController', function($scope) {
+      $scope.decrement = function() {
+        $scope.count = $scope.count - 1;
+      };
+    })
+  </script>
+
+</body>
+</html>

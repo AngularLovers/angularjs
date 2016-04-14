@@ -1,0 +1,36 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+  <div ng-controller="SomeController">
+    {{ someModel.someValue }}
+    <button ng-click="someAction()">Communicate to child</button>
+    <div ng-controller="ChildController">
+      {{ someModel.someValue }}
+      <button ng-click="childAction()">Communicate to parent</button>
+    </div>
+  </div>
+
+  <script>
+    angular.module('myApp', [])
+    .controller('SomeController', function($scope) {
+      // best practice, always use a model
+      $scope.someModel = {
+        someValue: 'hello computer'
+      }
+      $scope.someAction = function() {
+        $scope.someModel.someValue = 'hello human, from parent';
+      };
+    })
+    .controller('ChildController', function($scope) {
+      $scope.childAction = function() {
+        $scope.someModel.someValue = 'hello human, from child';
+      };
+    });
+  </script>
+
+</body>
+</html>

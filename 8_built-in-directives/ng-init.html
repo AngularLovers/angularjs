@@ -1,0 +1,18 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <link rel="stylesheet" href="http://cdn.jsdelivr.net/foundation/4.3.2/css/foundation.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+  <div ng-init="greeting='Hello'; person='World'">
+    {{greeting}} {{person}}
+  </div>
+
+  <script>
+    angular.module('myApp', []);
+  </script>
+
+</body>
+</html>

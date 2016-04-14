@@ -1,0 +1,57 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>CSS Transition</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+  <script src="http://code.angularjs.org/1.2.0-rc.2/angular-animate.js"></script>
+  <style>
+    .fadein.ng-enter,
+    .fadein.ng-leave {
+      transition: 2s linear all;
+      -webkit-transition: 2s linear all;
+      -moz-transition: 2s linear all;
+      -o-transition: 2s linear all;
+    }
+    .fadein.ng-enter {
+      opacity: 0;
+      color: green;
+    }
+    .fadein.ng-enter.ng-enter-active {
+      opacity: 1;
+      color: black;
+    }
+    .fadein.ng-leave {}
+    .fadein.ng-leave.ng-leave-active {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div ng-controller="HomeController">
+    <ul>
+      <li class="fadein" ng-repeat="r in roommates">
+        {{ r }}
+      </li>
+  </div>
+
+  <script>
+    angular.module('myApp', ['ngAnimate'])
+      .controller('HomeController', function($scope) {
+        $scope.roommates = [
+          'Ari', 'Q', 'Sean', 'Anand'
+        ];
+        setTimeout(function() {
+          $scope.roommates.push('Ginger');
+          $scope.$apply(); // Trigger a digest
+
+          setTimeout(function() {
+            $scope.roommates.shift();
+            $scope.$apply(); // Trigger digest
+          }, 2000);
+        }, 1000);
+      });
+  </script>
+
+</body>
+</html>

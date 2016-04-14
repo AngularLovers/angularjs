@@ -1,0 +1,70 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>JS Animation</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+  <script src="http://code.angularjs.org/1.2.0-rc.2/angular-animate.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+  <style>
+    .animateMe.ng-hide-add {
+      opacity: 1;
+    }
+    .animateMe.ng-hide-add.ng-hide-add-active
+    {
+      opacity: 0;
+    }
+    .animateMe.ng-hide-remove {
+      opacity: 0;
+    }
+    .animateMe.ng-hide-remove.ng-hide-remove-active {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div ng-init="show=false"
+      ng-controller="HomeController">
+    <button ng-click="show=!show">Show</button>
+    <div ng-show="show" class="animateMe">
+      <h2>Show me</h2>
+    </div>
+  </div>
+
+  <script>
+    angular.module('myApp', ['ngAnimate'])
+    .controller('HomeController', function() {
+    })
+    .animation('.animateMe', function() {
+      return {
+        addClass: function(ele, clsName, done)
+        {
+          // Example to show how to animate
+          // with jQuery. Note, this requires
+          // jQuery to be included in the HTML
+          if (clsName === 'ng-hide') {
+            $(ele).animate({
+              'opacity': 0
+            }, 2000, done);
+          } else { done(); }
+        },
+        removeClass: function(ele, clsName, done)
+        {
+          if (clsName === 'ng-hide') {
+            $(ele).css('opacity', 0);
+            // Force the removal of the ng-hide
+            // class so we can actually show the
+            // animation
+            $(ele).removeClass('ng-hide');
+            $(ele).animate({
+              'opacity': 1
+            }, 2000, done);
+          } else { done(); }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

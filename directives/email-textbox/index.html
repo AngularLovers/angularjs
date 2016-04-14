@@ -1,0 +1,50 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>Email Textbox</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+  <div ng-controller="ExampleController">
+    <input type="text" ng-click="sendMail()" />
+    <!-- Invoke the directive -->
+    <div scope-example
+         ng-model="to"
+         on-send="sendMail(email)"
+         from-name="ari@fullstack.io" />
+  </div>
+
+  <script>
+    var app = angular.module('myApp', []);
+    app.controller('ExampleController', ['$scope', function($scope) {
+      $scope.status = "Not sent";
+      $scope.sendMail = function(mail) {
+        $scope.status = "Sent";
+      };
+    }]);
+
+    app.directive('scopeExample', function() {
+      return {
+        restrict: 'EA',
+        require: '^ngModel',
+        scope: {
+          ngModel: '=',
+          onSend: '&',
+          fromName: '@'
+        },
+        template: '\
+          Email sent to: {{ to }}\
+          <br>\
+          From: {{ fromName }}\
+          <br>\
+          Message: \
+          <br>\
+          Status: {{ status }}\
+        '
+      };
+    })
+  </script>
+
+</body>
+</html>

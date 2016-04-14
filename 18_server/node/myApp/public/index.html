@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <title>Node app</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+  </head>
+  <body>
+    <div ng-controller="HomeController">
+      <h3>Button hits: {{ hits }}</h3>
+
+      <button ng-click="registerHit()">
+        HIT ME, if you dare
+      </button>
+    </div>
+    <script src="javascripts/services.js"></script>
+    <script src="javascripts/app.js"></script>
+  </body>
+</html>

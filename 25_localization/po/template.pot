@@ -1,0 +1,14 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: app/index.html
+msgid "Hello {{ user.name }}"
+msgstr ""
+
+#: app/index.html
+msgid "{{ count }} book"
+msgid_plural "{{ count }} books"
+msgstr[0] ""
+msgstr[1] ""

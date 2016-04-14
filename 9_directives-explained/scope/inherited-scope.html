@@ -1,0 +1,44 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+
+  <div ng-app="myApp"
+       ng-init="someProperty = 'some data'"></div>
+  <div ng-init="siblingProperty = 'more data'">
+    Inside Div Two: {{ aThirdProperty }}
+    <div ng-init="aThirdProperty = 'data for 3rd property'"
+         ng-controller="SomeController">
+      Inside Div Three: {{ aThirdProperty }}
+      <div ng-controller="SecondController">
+        Inside Div Four: {{ aThirdProperty }}
+        <br>
+        Outside myDirective: {{ myProperty }}
+        <div my-directive ng-init="myProperty = 'wow, this is cool'">
+          Inside myDirective: {{ myProperty }}
+        <div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    angular.module('myApp', [])
+    .controller('SomeController', function($scope) {
+      // we can leave it empty, it just needs to be defined
+    })
+    .controller('SecondController', function($scope) {
+      // also can be empty
+    })
+    .directive('myDirective', function() {
+      return {
+        restrict: 'A',
+        scope: true
+      }
+    })
+  </script>
+
+</body>
+</html>

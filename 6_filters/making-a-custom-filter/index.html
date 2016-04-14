@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>Simple App</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+
+  <div>
+    <h5>Custom Capitalize Filter:</h5>
+    <h2>{{ 'ginger loves dog bones' | lowercase | capitalize }}</h2>
+  </div>
+
+  <div>
+    <h5>Custom blankIfNegative Filter:</h5>
+    <h2>{{ 15 | blankIfNegative }}</h2>
+    <h2>{{ -15 | blankIfNegative }}</h2>
+  </div>
+
+  <script>
+    angular.module('myApp', ['myApp.filters']);
+
+    angular.module('myApp.filters', [])
+    .filter('capitalize', function() {
+      return function(input) {
+        // input will be the string we pass in
+        if (input) {
+          return input[0].toUpperCase() + input.slice(1);
+        }
+      }
+    })
+    .filter('blankIfNegative', function() {
+      return function(input) {
+        if (input <= 0) return ' ';
+        else return input;
+      }
+    });
+  </script>
+
+</body>
+</html>

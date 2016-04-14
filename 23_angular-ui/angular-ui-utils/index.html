@@ -1,0 +1,33 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>Angular UI Utils Events Module Example</title>
+</head>
+<body>
+
+  <div ng-controller="DemoController">
+    <form name="form">
+      <input type="text"
+             name="name"
+             placeholder="Your name"
+             ui-event="{focus: 'showNameHelp=true',
+                        blur: 'showNameHelp=false'}"
+      />
+      <span ng-show="showNameHelp">Please Enter Your Name</span>
+      <br>
+      <input type="email"
+             name="email"
+             placeholder="Your email"
+             ui-event="{focus: 'showEmailHelp=true',
+                        blur: 'showEmailHelp=false'}"
+      />
+      <span ng-show="showEmailHelp">Please Enter Your Email</span>
+    </form>
+  </div>
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-ui-utils/modules/event/event.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>

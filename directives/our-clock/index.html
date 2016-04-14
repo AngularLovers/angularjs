@@ -1,0 +1,95 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>Clock Directive</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+  <div ng-controller="OurController">
+    <div our-clock ng-model="city.name" date-format="mediumTime">
+      <h3>The time is...</h3>
+    </div>
+  </div>
+
+  <script>
+    angular.module('myApp', ['myApp.directives'])
+    .controller('OurController', function($scope) {});
+
+    angular.module('myApp.directives', [])
+    .directive('ourClock', function() {
+      return {
+        restrict: 'A',
+        require: 'ngModel',
+        transclude: true,
+        controller: function($scope) {
+          $scope.clock = {
+            now: null
+          }
+
+          $scope.city = {
+            name: 'San Francisco'
+          }
+
+          $scope.all_cities = {
+            "San Francisco": 0,
+            "Denver": 1,
+            "Chicago": 2,
+            "New York": 3
+          };
+
+          $scope.tzOffset = 0;
+
+          function timeWithZone() {
+            return (new Date().getTime() + (3600000 * $scope.tzOffset));
+          }
+
+          $scope.updateClock = function() {
+            $scope.clock.now = timeWithZone();
+          };
+
+          setInterval(function() {
+            $scope.$apply($scope.updateClock);
+          }, 1000);
+          $scope.updateClock();
+
+        },
+
+        link: function(scope, ele, attrs, ctrl) {
+          if (attrs.dateFormat)
+            scope.dateFormat = attrs.dateFormat || "mediumTime";
+          else
+            scope.dateFormat = "mediumTime";
+          scope.$watch('city.name', function(newVal, oldVal) {
+            if (newVal) {
+              scope.city.name = newVal;
+              if (scope.all_cities.hasOwnProperty(newVal)) {
+                scope.tzOffset = scope.all_cities[newVal];
+              }
+              scope.updateClock();
+            }
+          });
+        },
+
+        template: '\
+          <label>\
+            Enter one of the following cities:\
+            <ul>\
+              <li>San Francisco</li>\
+              <li>Denver</li>\
+              <li>Chicago</li>\
+              <li>New York</li>\
+            </ul>\
+          </label>\
+          <input type="text"\
+                 ng-model="city.name"></input>\
+          <div>Current time for {{ city.name }}</div>\
+          <h1 class="clock">{{ clock.now | date:dateFormat }}</h1>\
+          <div ng-transclude></div>\
+        '
+      };
+    });
+  </script>
+
+</body>
+</html>

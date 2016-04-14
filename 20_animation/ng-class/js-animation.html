@@ -1,0 +1,63 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>JS Animation</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+  <script src="http://code.angularjs.org/1.2.0-rc.2/angular-animate.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <style>
+    .grown {font-size: 50px;}
+    .animateMe.grown-add {
+      font-size: 16px;
+    }
+    .animateMe.grown-add.grown-add-active {
+      font-size: 50px;
+    }
+    .animateMe.grown-remove {}
+    .animateMe.grown-remove.grown-remove-active {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div ng-init="grow=false"
+      ng-controller="HomeController">
+    <button ng-click="grow=!grow">Grow</button>
+    <div ng-class="{grown:grow}"
+        class="animateMe">
+      <h2>Grow me</h2>
+    </div>
+  </div>
+
+  <script>
+    angular.module('myApp', ['ngAnimate'])
+    .controller('HomeController', function() {
+    })
+    .animation('.animateMe', function() {
+      return {
+        addClass: function(ele, clsName, done)
+        {
+          // Example to show how to animate
+          // with jQuery. Note, this requires
+          // jQuery to be included in the HTML
+          if (clsName === 'grown') {
+            $(ele).animate({
+              'font-size': '50px'
+            }, 2000, done);
+          } else { done(); }
+        },
+        removeClass: function(ele, clsName, done)
+        {
+          if (clsName === 'grown') {
+            $(ele).animate({
+              'font-size': '16'
+            }, 2000, done);
+          } else { done(); }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

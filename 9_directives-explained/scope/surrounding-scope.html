@@ -1,0 +1,20 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+  <div ng-app="myApp"
+       ng-init="someProperty = 'some data'"></div>
+  <div ng-init="siblingProperty = 'more data'">
+    Inside Div Two
+    <div ng-init="aThirdProperty"></div>
+  </div>
+
+  <script>
+    angular.module('myApp', [])
+  </script>
+
+</body>
+</html>

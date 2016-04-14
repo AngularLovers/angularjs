@@ -1,0 +1,18 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+  Check me check multiple: <input type="checkbox" ng-model="open"><br/>
+  <details id="details" ng-open="open">
+     <summary>Show/Hide me</summary>
+  </details>
+
+  <script>
+    angular.module('myApp', [])
+  </script>
+
+</body>
+</html>

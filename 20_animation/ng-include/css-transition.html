@@ -1,0 +1,64 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <title>CSS Transition</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+  <script src="http://code.angularjs.org/1.2.0-rc.2/angular-animate.js"></script>
+  <style>
+    .animateInclude.ng-enter,
+    .animateInclude.ng-leave {
+      transition: 2s linear all;
+      -webkit-transition: 2s linear all;
+      -moz-transition: 2s linear all;
+      -o-transition: 2s linear all;
+    }
+    .animateInclude.ng-enter {
+      opacity: 0;
+      color: green;
+    }
+    .animateInclude.ng-enter.ng-enter-active {
+      opacity: 1;
+      color: black;
+    }
+    .animateInclude.ng-leave {}
+    .animateInclude.ng-leave.ng-leave-active {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div ng-init="template.url='/home.html'"
+      ng-controller="HomeController">
+    <button ng-click="template.url='/home.html'">
+      Home
+    </button>
+    <button ng-click="template.url='/second.html'">
+      Second
+    </button>
+    <button ng-click="template.url='/third.html'">
+      Third
+    </button>
+    <div class="animateInclude"
+          ng-include="template.url">
+    </div>
+  </div>
+
+  <script type="text/ng-template" id="/home.html">
+    Home Template
+  </script>
+  <script type="text/ng-template" id="/second.html">
+    Second Template
+  </script>
+  <script type="text/ng-template" id="/third.html">
+    Third Template
+  </script>
+
+  <script>
+    angular.module('myApp', ['ngAnimate'])
+    .controller('HomeController', function() {
+    });
+  </script>
+
+</body>
+</html>
