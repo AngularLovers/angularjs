@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="myApp" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body>
+<xiaomo my-url="http://www.xiaomo.info"></xiaomo>
+<div ng-if="2+2===5">
+    显示
+</div>
+<script>
+    angular.module("myApp", [])
+            .directive("xiaomo", function () {
+                return {
+                    restrict: "E",
+                    scope: {
+                        myUrl: "@"
+                    },
+                    template: "<div><input type='text' ng-model='name'></div><span>hello <a href='{{myUrl}}'>{{name}}</a></span>"
+                }
+            })
+
+
+</script>
+</body>
+</html>

@@ -16,10 +16,36 @@
     <button type="submit">提交</button>
 </form>
 <script>
-    angular.module("myApp", ["ngMessages"])
+    angular.module("myApp", ["ngMessages", "userDirective", "signupController", "userService"])
+            .service("userService", function ($http) {
+                $http({
+                    method: "POST",
+                    url: "http://static.xiaomo.info:8888/web/findByName",
+                    data: {
+                        name: scope.ngModel
+                    }
+                }).success(function (data, status, headers, cfg) {
+                    console.log(data.result);
+                    $scope.user = data;
+                }).error(function (data, status, headers, cfg) {
+                    c.$setValidity('unique', false);
+                });
+            })
+            .directive("userDirective", function ($scope) {
+                return {
+                    require: "ngModel",
+                    link: function (scope, ele, attrs, c) {
+                        $scope.$watch(attrs.ngModel, function () {
+                            var data = $scope.user;
+                            c.$setValidity('unique', data.result != 204);
+                        })
+                    }
+                }
+            })
             .controller("signupController", ["$scope", function ($scope) {
 
             }])
+
 
 </script>
 </body>
