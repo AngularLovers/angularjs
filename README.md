@@ -1,7 +1,7 @@
 ng-book
 =======
 #####这是ng-book上配套的代码，附带有pdf
-这个分支是供自己学习用的，里面有很多东西自己有改动过,想看我学习过程记的笔记可以check本分支。
+这个分支是供自己学习用的，里面有很多东西自己有改动过,想看我学习过程记的笔记可以check本分支。        
 想要ng-book配套源码请check master分支。[传送门](https://github.com/qq83387856/ng-book-code/tree/master)
 ####### ng-book 英文原版（1.5.x）和中文版(1.2.x)电子书  传送门 [https://github.com/qq83387856/ng-book-code/tree/1.0/pdf](https://github.com/qq83387856/ng-book-code/tree/1.0/pdf)
 ####### ng2-book 配套源码（请选择最新版本的分支下载）  传送门 [https://github.com/qq83387856/ng2-book-code](https://github.com/qq83387856/ng2-book-code)
