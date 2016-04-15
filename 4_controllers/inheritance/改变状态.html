@@ -1,0 +1,31 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+    <title>Simple App</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="MyController">
+    <button ng-click="showName()">show</button>
+    {{ person }}
+    <div>
+        Hello: <span>{{person.name}}</span>
+    </div>
+</div>
+<script>
+    angular.module("myApp", [])
+            .controller("MyController", function ($scope) {
+                $scope.person = {
+                    state: false,
+                    name:""
+                };
+                $scope.showName = function () {
+                    $scope.person.name = "xiaomo";
+                    $scope.person.state = true;
+                }
+            })
+
+</script>
+</body>
+</html>
