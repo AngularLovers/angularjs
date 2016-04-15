@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="myApp" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用controller</title>
+
+</head>
+<body>
+<div ng-controller="MyController">
+    <span> {{clock.now | date:'medium' }}</span>
+</div>
+<script src="http://cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+<script>
+    angular.module("myApp", [])
+            .controller("MyController", function MyController($scope) {
+                $scope.clock = {};
+                var updateClock = function () {
+                    $scope.clock.now = new Date();
+                };
+                setInterval(function () {
+                    $scope.$apply(updateClock);
+                }, 1000);
+                updateClock();
+            })
+</script>
+</body>
+</html>

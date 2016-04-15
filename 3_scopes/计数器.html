@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="myApp" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计数器</title>
+</head>
+<body>
+<div ng-controller="MyController">
+    <button ng-click="add(1)">加</button>
+    <br>
+    <button ng-click="reduce(1)">减</button>
+    <br>
+    <span>{{counter}}</span>
+</div>
+<script src="http://cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+<script>
+    angular.module("myApp", [])
+            .controller("MyController", function ($scope) {
+                $scope.counter = 0;
+                $scope.add = function (count) {
+                    $scope.counter += count;
+                }
+                $scope.reduce = function (count) {
+                    $scope.counter -= count;
+                }
+            })
+
+</script>
+</body>
+</html>
