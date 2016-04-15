@@ -3,7 +3,7 @@
 <head>
     <title>Routing Example</title>
     <!-- Load Angular -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
 
     <!-- Load ngMessages -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular-messages.min.js"></script>
@@ -17,7 +17,7 @@
 </form>
 <script>
     angular.module("myApp", ["ngMessages"])
-            .controller("signupController", ["", function ($scope) {
+            .controller("signupController", ["$scope", function ($scope) {
 
             }])
 
