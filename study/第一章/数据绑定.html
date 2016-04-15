@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="">
+<head>
+    <meta charset="UTF-8">
+    <title>数据绑定</title>
+</head>
+<body>
+<div>
+    <input type="text" name="name" ng-model="name" title="">
+</div>
+    <h1> 方式一: <span ng-bind="name"></span></h1>
+    <h1> 方式二: {{name}}</h1>
+    <h3>说明：首屏加载建议方式一,不会闪难看的表达式。不是首屏(js已经加载完了，可以使用第二种方式)。可以打开这个页面持续刷新，体会一下区别</h3>
+<script src="http://cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</body>
+</html>
