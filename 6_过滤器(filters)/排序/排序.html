@@ -16,7 +16,7 @@
         <th>author</th>
         <th>点击数</th>
     </tr>
-    <tr ng-repeat="blog in blogs|orderBy:'blog.vote'">
+    <tr ng-repeat="blog in blogs|orderBy:'vote':true">
         <td>{{$index + 1}}</td>
         <td>{{blog.title}}</td>
         <td>{{blog.summary}}</td>
