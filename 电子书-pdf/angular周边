@@ -8,15 +8,7 @@ Satellizer支持Google、Facebook、LinkedIn 和 Twitter 认证体系，
 AngularUI
 AngularUI为AngularJS提供了很多UI增强效果，并且提供了IE、jQuery 兼容，以及一些常用 UI 组件。
 AngularUI包含以下模块：
-
-UI-Utils
-UI-Modules
-UI-Alias
-UI-Bootstrap
-NG-Grid
-UI-Router
-IDE Plugins
-GSoC
+UI-Utils UI-Modules UI-Alias UI-Bootstrap NG-Grid UI-Router IDE Plugins GSoC
 =====================================================================================================
 angular-animate
 =====================================================================================================
