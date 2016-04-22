@@ -21,3 +21,4 @@ ng-book
 #####8. $emit('xxx')向上传递  $.broadcast('xx')向下传递
 #####9. 调试  angular.element($0).scope()
 #####10.路由(ngRoute)：angular-router（不可嵌套）  一般使用 ui-router 可嵌套
+#####11.没有ng-model绑定双向视图，但要实时更新用$scope.$apply(func)，典型场景:实时显示当前时间的功能。

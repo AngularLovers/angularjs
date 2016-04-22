@@ -1,3 +1,4 @@
+// 1.3版本后这种写法会出错
 function MyController($scope) {
     $scope.clock = {
         now: new Date()
