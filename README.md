@@ -23,8 +23,9 @@ ng-book
 #####10.路由(ngRoute)：angular-router（不可嵌套）  一般使用 ui-router 可嵌套
 #####11.没有ng-model绑定双向视图，但要实时更新用$scope.$apply(func)，典型场景:实时显示当前时间的功能。
 #####12.angularjs表单验证要先禁用表单默认的验证方式（novalidate）
-formName.inputFieldName.$pristine 未修改
-formName.inputFieldName.$dirty   修改过
-formName.inputFieldName.$valid   正确的
-formName.inputFieldName.$invalid  不合法的
-formName.inputFieldName.$error  错误的
+
+######formName.inputFieldName.$pristine 未修改
+######formName.inputFieldName.$dirty   修改过
+######formName.inputFieldName.$valid   正确的
+######formName.inputFieldName.$invalid  不合法的
+######formName.inputFieldName.$error  错误的
