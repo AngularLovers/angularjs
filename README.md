@@ -1,4 +1,4 @@
-ng-book
+ng-book source code
 =======
 
 The ng-book recipe
